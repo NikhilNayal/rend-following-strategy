@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Following Algo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Trend Following Strategy</h1>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">BankNifty 4-Leg Execution System</span>
+                <span id="paperTradingBadge"
+                    style="margin-left: 1rem; padding: 0.2rem 0.5rem; background: #DAA520; color: #000; border-radius: 4px; font-size: 0.7rem; font-weight: bold; display: none;">PAPER
+                    TRADING</span>
+            </div>
+            <div id="statusIndicator" class="status-badge status-stopped">STOPPED</div>
+        </header>
+
+        <div class="grid">
+            <!-- Sidebar / Config -->
+            <div class="card">
+                <h2>Configuration</h2>
+                <form id="configForm">
+                    <div class="form-group">
+                        <label>Instrument</label>
+                        <select id="instrument">
+                            <option value="NIFTY BANK">NIFTY BANK</option>
+                            <option value="NIFTY 50">NIFTY 50</option>
+                            <option value="SENSEX">SENSEX</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expiry Preference</label>
+                        <select id="expiry_type">
+                            <option value="current">Current Week</option>
+                            <option value="next">Next Week</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Base Lots</label>
+                        <input type="number" id="lots" value="1">
+                    </div>
+
+                    <div style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                        <h3 style="font-size: 0.9rem; color: var(--text-muted);">Leg Settings (Trigger %)</h3>
+                        <div id="legsContainer" class="legs-config">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <div id="controls" style="margin-top: 2rem;">
+                        <button type="button" id="startBtn" class="btn btn-primary">Start Strategy</button>
+                        <button type="button" id="stopBtn" class="btn btn-danger hidden">Stop Strategy</button>
+                        <button type="button" id="saveBtn" class="btn"
+                            style="background: var(--border); color: white; margin-top: 0.5rem;">Save Config</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Main Dashboard -->
+            <div class="card">
+                <h2>Live Dashboard</h2>
+
+                <div style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <div>
+                        <label style="color: var(--text-muted); font-size: 0.8rem;">Current Phase</label>
+                        <div id="currentPhase" style="font-size: 1.2rem; font-weight: 500;">IDLE</div>
+                    </div>
+                    <div>
+                        <label style="color: var(--text-muted); font-size: 0.8rem;">Selected Expiry</label>
+                        <div id="selectedExpiry" style="font-size: 1.2rem;">-</div>
+                    </div>
+                    <div>
+                        <label style="color: var(--text-muted); font-size: 0.8rem;">Spot Price</label>
+                        <div id="spotPrice" style="font-size: 1.2rem; font-weight: 600; color: #4CAF50;">-</div>
+                    </div>
+                    <div id="countdownContainer" style="display: none;">
+                        <label style="color: var(--text-muted); font-size: 0.8rem;">Next Action In</label>
+                        <div id="countdown" style="font-size: 1.2rem; font-weight: 600; color: #FF9800;">-</div>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Leg</th>
+                            <th>Strike</th>
+                            <th>Status</th>
+                            <th>Range High</th>
+                            <th>LTP</th>
+                            <th>Entry / SL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="legsTableBody">
+                        <tr>
+                            <td colspan="6" style="text-align:center; color: var(--text-muted);">Waiting for ticks...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 2rem;">
+                    <h3>Logs / Messages</h3>
+                    <div id="logs"
+                        style="height: 150px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem;">
+                        <!-- Logs -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

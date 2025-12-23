@@ -1,0 +1,79 @@
+{
+    "strategy_settings": {
+        "paper_trading": true,
+        "time_range": {
+            "start": "09:30",
+            "end": "10:30",
+            "check_condition": "09:16",
+            "strategy_exit": "09:22"
+        },
+        "instrument_map": {
+            "NIFTY BANK": "BANKNIFTY",
+            "NIFTY 50": "NIFTY",
+            "SENSEX": "SENSEX",
+            "FINNIFTY": "FINNIFTY",
+            "MIDCPNIFTY": "MIDCPNIFTY"
+        },
+        "strategy_parameters": {
+            "gap_check_window_minutes": 2,
+            "exit_check_window_minutes": 3,
+            "default_strike_step": 100,
+            "default_buffer_minutes": 30
+        },
+        "expiry_type": "current",
+        "lots": 1,
+        "instrument": "NIFTY BANK",
+        "strike_step": 100,
+        "buffer_minutes": 30,
+        "lot_sizes": {
+            "NIFTY BANK": 15,
+            "NIFTY 50": 25,
+            "SENSEX": 10,
+            "FINNIFTY": 25,
+            "MIDCPNIFTY": 50
+        },
+        "legs": {
+            "sp10ce": {
+                "action": "BUY",
+                "percentage_of_straddle": 10,
+                "sl_percentage": 50,
+                "entry_trigger_percentage": 10,
+                "reentry_trigger_percentage": 10,
+                "lots": 5,
+                "expiry_type": "current"
+            },
+            "sp5ce": {
+                "action": "BUY",
+                "percentage_of_straddle": 5,
+                "sl_percentage": 50,
+                "entry_trigger_percentage": 15,
+                "reentry_trigger_percentage": 15,
+                "lots": 5,
+                "expiry_type": "current"
+            },
+            "sp10pe": {
+                "action": "BUY",
+                "percentage_of_straddle": 10,
+                "sl_percentage": 50,
+                "entry_trigger_percentage": 25,
+                "reentry_trigger_percentage": 25,
+                "lots": 1,
+                "expiry_type": "current"
+            },
+            "sp5pe": {
+                "action": "BUY",
+                "percentage_of_straddle": 5,
+                "sl_percentage": 50,
+                "entry_trigger_percentage": 30,
+                "reentry_trigger_percentage": 30,
+                "lots": 1,
+                "expiry_type": "current"
+            }
+        }
+    },
+    "app_settings": {
+        "angel_one_credentials_env": true,
+        "db_connection_env": true
+    },
+    "is_running": true
+}
