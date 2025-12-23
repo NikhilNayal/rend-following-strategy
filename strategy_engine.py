@@ -208,13 +208,11 @@ class StrategyEngine:
         """
         Helper: Find out what 'Current Expiry' means today.
         e.g. If today is Monday, Current might be this Thursday.
+        
+        Note: instrument parameter should already be the DB symbol (e.g., "BANKNIFTY")
         """
         # type_pref: "current" or "next"
-        # Ensure we use the mapped symbol for DB queries
-        config = await self.config_manager.get_strategy_settings()
-        mapping = config["instrument_map"]
-        db_instrument = mapping[instrument]
-        expiries = await self.db.get_active_expiries(db_instrument)
+        expiries = await self.db.get_active_expiries(instrument)
         if not expiries:
             return None
             
